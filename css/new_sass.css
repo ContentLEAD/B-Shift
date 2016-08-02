@@ -1,0 +1,168 @@
+/* line 2, sass/new_sass.scss */
+.b-outer-frame {
+  width: 100%;
+}
+
+.left-bframe .slick-list {
+  height: 100%;
+}
+.left-bframe .slick-track {
+  height: 100%;
+}
+
+
+.left-bframe button {
+  color: inherit !important;
+}
+
+.left-bframe .slick-prev::before, .left-bframe .slick-next::before {
+
+}
+/* line 5, sass/new_sass.scss */
+.b-outer-frame .b-frame {
+  overflow: hidden;
+  width: auto;
+  margin: 0px;
+  padding: 0;
+}
+/* line 13, sass/new_sass.scss */
+.b-outer-frame .b-frame li a {
+  display: block;
+}
+/* line 17, sass/new_sass.scss */
+.b-outer-frame .b-frame li .slide-nav-left {
+  height: 0px;
+  width: 0px;
+  border-top: 30px solid transparent;
+  position: absolute;
+  left: -20px;
+  border-bottom: 30px solid transparent;
+  border-right: 30px solid;
+  opacity: 0.6;
+}
+/* line 29, sass/new_sass.scss */
+.b-outer-frame .b-frame li .slide-nav-left:hover {
+  border-right-color: #000;
+  cursor: pointer;
+}
+/* line 34, sass/new_sass.scss */
+.b-outer-frame .b-frame li .slide-nav-right {
+  height: 0px;
+  width: 0px;
+  border-top: 30px solid transparent;
+  position: absolute;
+  right: -20px;
+  border-bottom: 30px solid transparent;
+  border-left: 30px solid;
+  opacity: 0.6;
+}
+/* line 45, sass/new_sass.scss */
+.b-outer-frame .b-frame li .slide-nav-right:hover {
+  border-left-color: #000;
+  cursor: pointer;
+}
+/* line 50, sass/new_sass.scss */
+.b-outer-frame .b-frame li .b-shift-content {
+  width: 75%;
+  margin-left: 12.5%;
+  text-align: center;
+  display: block;
+  position: relative;
+}
+/* line 57, sass/new_sass.scss */
+.b-outer-frame .b-frame li .b-shift-content h1 {
+  font-size: 34px;
+  color: #FFF;
+  font-family: Helvetica;
+  font-weight: 600;
+  font-style: italic;
+  display: inline;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+/* line 68, sass/new_sass.scss */
+.b-outer-frame .b-frame li .b-shift-content p {
+  color: #FFF;
+}
+/* line 71, sass/new_sass.scss */
+.b-outer-frame .b-frame li .b-shift-content img {
+  width: auto;
+  height: 100px;
+}
+/* line 78, sass/new_sass.scss */
+.b-outer-frame .b-frame p {
+  padding-left: 65px;
+  padding-right: 65px;
+  margin: 0px !important;
+}
+.b-frame h2, .b-frame h3 {
+  margin: 0;
+}
+.slide_right {
+  display: inline;
+  float: left;
+}
+.left-bframe .b-shift-content {
+  position: relative;
+  top: 40%;
+  transform: translateY(-50%);
+}
+
+.slick-track .b-shift-content {
+    padding: 0 5%;
+
+}
+
+
+.option-a h2, .option-a h3, .option-a h1, .option-a p {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  /* line 87, sass/new_sass.scss */
+  .b-frame {
+    overflow: hidden;
+    height: 195px;
+  }
+  /* line 92, sass/new_sass.scss */
+  .b-frame li p {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  /* line 97, sass/new_sass.scss */
+  .b-frame li .slide-nav-left {
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid #FFF;
+  }
+  /* line 103, sass/new_sass.scss */
+  .b-frame li .slide-nav-right {
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #FFF;
+  }
+}
+@media (max-width: 480px) {
+  /* line 115, sass/new_sass.scss */
+  .b-frame {
+    overflow: hidden;
+    height: 145px !important;
+  }
+  /* line 120, sass/new_sass.scss */
+  .b-frame li p {
+    display: none;
+  }
+  /* line 124, sass/new_sass.scss */
+  .b-frame li .slide-nav-left {
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid #FFF;
+  }
+  /* line 132, sass/new_sass.scss */
+  .b-frame li .slide-nav-right {
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #FFF;
+  }
+}

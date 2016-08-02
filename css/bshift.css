@@ -1,0 +1,233 @@
+.ib, .b-current { 
+	display: inline-block; 
+	position: absolute; 
+	left: 10px; 
+	vertical-align: top; 
+	background-color: #dedede;
+	padding: 5px;
+	width: 90%;
+}
+.b-current {
+	margin-top: 30px;
+}
+.update-nag { }
+.btn_save { 
+		border: 1px solid;
+		font-weight: 600;
+		font-size: 18px;
+		position: relative;
+		background: #67C81D;
+		color: #FFF;
+		width: 150px;
+		margin: 1px;
+		position: relative;
+		bottom: 15px;
+		height: 45px;
+			}
+.add_slide_btn {	margin-left: 20px;
+					border: 1px solid;
+					display: table;
+					padding: 5px;
+					background-color: #777;
+					color: #FFF;
+					cursor: pointer;
+					font-size: 18px;
+				}
+.add_slide_btn:hover, .btn_save:hover {
+					color: gold;
+}
+.add_new_slide {
+		cursor: pointer;
+	    border: 1px solid;
+    	border-radius: 16px;
+    	padding: 0px 7px;
+    	margin-right: 10px;
+}
+.delete_slide {
+			/*margin-top: 10px;
+			border: 1px solid;
+			font-weight: 600;*/
+			width: 80px;
+			height: auto;
+			cursor: pointer;
+			position: relative;
+			float: left;
+
+}
+select.metric {				padding: 0;
+							line-height: 28px;
+							height: 28px;
+							vertical-align: baseline;
+				}
+.update_slider {
+					margin-top: 10px;
+					border: 1px solid;
+					font-weight: 600;
+				}
+.upload_image_button {
+					border: 1px solid;
+					font-weight: 600;
+}
+.update_slider:hover {
+
+					opacity: 0.6;
+
+}
+
+.toplevel_page_B-Shift .col-md-3 {
+
+    border: 1px dotted;
+}
+
+.slide_input, .upload_image_button {
+	display: inline;
+	margin: 5px 0;
+}
+.ih {
+	width: 30px;
+}
+input.slide_input.image_url {
+	border: 0;
+	background-color: inherit;
+	font-size: 11px;
+	margin-top: 10px;
+	display: block;
+}
+.admin_page_edit_slider h4 {
+	font-size: 14px;
+	margin: 0;
+	padding: 5px;
+	font-weight: 600;
+}
+.b-preview {
+	width: 50px;
+	height: auto;
+	float: none;
+	cursor: pointer;
+	top: -550px;
+	position: relative;
+	left: 150px;
+}
+.slide-preview {
+	z-index: 9;
+	text-align: center;
+	width: 100%;
+	margin-top: 10px;
+	display: inline-block;
+}
+
+
+.editor_width {
+	width: 150px;
+}
+.bshift-editor {
+	height: 85px !important;
+	width: 173px;
+}
+.collapse {
+	visibility: collapse;
+}
+#wpfooter {
+	display: none;
+}
+#slides {
+	background-color: #FFF;
+	padding-left: 10px;
+}
+html {
+	background: #fff;
+}
+.slide_title {
+	background-color: #FFF;
+	margin-bottom: 0;
+	margin-right: 10px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.slide_title.initial {
+
+	background-color: #dedede;
+}
+.engaged {
+	background-color: #dedede;
+
+}
+.ib div.mce-panel, .b-current div.mce-panel {
+
+	width: 100%;
+
+}
+#slides iframe {
+	height: 100px !important;
+}
+.b-current .dynamic-editor {
+	display: inline-block;
+	float: none;
+}
+.b-current .switch-tmce {
+	background: #f5f5f5;
+}
+#slides [hidden] {
+	display: block;
+}
+.gen-settings-form {
+	margin-bottom: 30px;
+}
+.inner_prev div{
+	position: relative; 
+	top: 50%; 
+	transform: translateY(-50%);
+}
+.jscolor-active {
+	cursor: crosshair;
+}
+#inner-image {
+	display: none;
+}
+.option-a, .option-b {
+	position: relative;
+}
+.option-b img {
+	display: none;
+}
+.btm {
+	width: 30px;
+}
+.inner_prev {
+	height: 100%;
+}
+.bshift-admn-banner {
+	width: 90%;
+}
+.container {
+	max-width: 100%;
+}
+.bshift .col-md-3 input {
+	width: auto;
+}
+.bshift-form-element {
+	float: left;
+	padding: 10px;
+	border: 2px solid;
+	height: 120px;
+	margin: 2px;
+	width: 200px;
+}
+.bshift-form-element input {
+	width: 90%;
+	margin-left: 3px;
+}
+.bshift-form-element select {
+	display: inline-block;
+	margin-top: 5%;
+	margin-left: 3px;
+}
+.entry-form .checkbox {
+	margin-top: 0px;
+	vertical-align: text-bottom;
+	margin-left: 5px;
+}
+.left-bframe button {
+	color: inherit !important;
+}
