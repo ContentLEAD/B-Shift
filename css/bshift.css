@@ -176,8 +176,7 @@ html {
 }
 .inner_prev div{
 	position: relative; 
-	top: 50%; 
-	transform: translateY(-50%);
+	
 }
 .jscolor-active {
 	cursor: crosshair;
@@ -227,7 +226,4 @@ html {
 	margin-top: 0px;
 	vertical-align: text-bottom;
 	margin-left: 5px;
-}
-.left-bframe button {
-	color: inherit !important;
 }
