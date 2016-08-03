@@ -266,7 +266,7 @@
 									<h4>Delay</h4>
 										<input type="text" class="slide_input" name="delay[]" value="<?php echo $new_array['delay'][$i]; ?>"></input>
 									</div>
-									<div class="bshift-form-element">
+									<!--<div class="bshift-form-element">
 									<h4>Effect</h4>
 										<?php $selected_effect = $new_array['effect'][$i]; ?>
 									<select name="effect[]" class="slide_input">
@@ -277,7 +277,7 @@
 										<option value="toggle" <?php if($selected_effect == 'toggle'){echo("selected");}?>>Standard Toggle</option>
 										<option value="rotate" <?php if($selected_effect == 'rotate'){echo("selected");}?>>Invert</option>
 									</select>
-									</div>
+									</div>-->
 									<div class="bshift-form-element">
 									<h4>Index</h4>
 										<input type="text" class="slide_input" name="index[]" value="<?php echo $i; ?>"></input>
