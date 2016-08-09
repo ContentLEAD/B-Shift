@@ -50,7 +50,7 @@
 					$temp_array['text_position'][$index] = ($_POST['text_position'][$i])? $_POST['text_position'][$i] : '';
 					$temp_array['position_bottom'][$index] = ($_POST['position_bottom'][$i])? $_POST['position_bottom'][$i] : 0;
 					$temp_array['color'][$index] = $_POST['color'][$i];
-					$temp_array['effect'][$index] = $_POST['effect'][$i];
+					//$temp_array['effect'][$index] = $_POST['effect'][$i];
 					//$temp_array['height'][$index] = $_POST['height'][$i];
 					$temp_array['width'][$index] = $_POST['width'][$i];
 					$temp_array['width_metric'][$index] = $_POST['width_metric'][$i];
@@ -73,7 +73,7 @@
 							$temp_array['position_bottom'][$i] = 0;
 					}*/
 					$temp_array['color'][$i] = $_POST['color'][$i];
-					$temp_array['effect'][$i] = $_POST['effect'][$i];
+					//$temp_array['effect'][$i] = $_POST['effect'][$i];
 					//$temp_array['height'][$i] = $_POST['height'][$i];
 					$temp_array['width'][$i] = $_POST['width'][$i];
 					$temp_array['width_metric'][$i] = $_POST['width_metric'][$i];
@@ -266,7 +266,7 @@
 									<h4>Delay</h4>
 										<input type="text" class="slide_input" name="delay[]" value="<?php echo $new_array['delay'][$i]; ?>"></input>
 									</div>
-									<!--<div class="bshift-form-element">
+									<div class="bshift-form-element" style="display: none;">
 									<h4>Effect</h4>
 										<?php $selected_effect = $new_array['effect'][$i]; ?>
 									<select name="effect[]" class="slide_input">
@@ -277,7 +277,7 @@
 										<option value="toggle" <?php if($selected_effect == 'toggle'){echo("selected");}?>>Standard Toggle</option>
 										<option value="rotate" <?php if($selected_effect == 'rotate'){echo("selected");}?>>Invert</option>
 									</select>
-									</div>-->
+									</div>
 									<div class="bshift-form-element">
 									<h4>Index</h4>
 										<input type="text" class="slide_input" name="index[]" value="<?php echo $i; ?>"></input>

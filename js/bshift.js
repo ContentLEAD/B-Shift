@@ -16,6 +16,38 @@
 
         jQuery.fn.extend({
 
+                    bswap: function(eff,dur,current,next){
+
+                        //console.log(current);
+                        switch(eff) {
+                                case 'slide_vertical': 
+                                    //console.log('in slide vertical');                                
+                                    jQuery(next).slideToggle(dur,function(){jQuery(this).addClass('b-active');});
+                                    jQuery(current).slideToggle(dur,function(){jQuery(this).removeClass('b-active');});
+                                    break;
+                                
+                                case 'fader':
+                                    //console.log('in fade');
+                                    jQuery(next).fadeIn(dur,function(){jQuery(this).addClass('b-active');});
+                                    jQuery(current).fadeOut(dur,function(){jQuery(this).removeClass('b-active');});
+                                    break;
+                                case 'rotate':
+                                    jQuery(next).css({'transform': 'rotate(180deg)'});
+                                    jQuery(next).toggle(dur,function(){jQuery(this).addClass('b-active');});
+                                    jQuery(current).hide(function(){jQuery(this).removeClass('b-active');});
+                                    break;
+                                default:
+                                    console.log('default toggle');
+                                    jQuery(next).show(dur,function(){jQuery(this).addClass('b-active');});
+                                    jQuery(current).toggle(dur,function(){jQuery(this).removeClass('b-active');});
+
+                            }               
+
+                    }
+        });
+
+        jQuery.fn.extend({
+
         
 
                     getInfoalt: function(){
@@ -64,8 +96,8 @@
                 {
                     banimate: function(index){
                         
-                        var _this = this;
                         //console.log(this);
+                        var _this = this;
                         currentSlide = jQuery(_this[index].object);
                         index=index+1;                       
                         if(index==slidesLength){
@@ -75,77 +107,37 @@
                         } else {
                             nextSlide=jQuery(currentSlide).next();
                         }
+                        
                         jQuery(nextSlide).bheight();
                         var effect = _this[index].effect;
                         var direction = _this[index].direction;
                         var duration = _this[index].duration;
                         var rotation =  _this[index].rotation;
                         var degree = 45;
-                        //console.log(rotation);
-                        switch(effect) {
-                                case 'slide_vertical': 
-                                    //console.log('in slide vertical');                                
-                                    jQuery(nextSlide).slideToggle(duration,function(){jQuery(this).addClass('b-active');});
-                                    jQuery(currentSlide).slideToggle(duration,function(){jQuery(this).removeClass('b-active');});
-                                    break;
-                                case 'slide_right':
-                                    /*jQuery(currentSlide).hide('slow');
-                                    jQuery(nextSlide).css({'display':'inline','right': '1000px'});
-                                    jQuery(nextSlide).animate({"right" : "0px"},550,function(){jQuery(this).addClass('b-active');});
-                                    
-                                    break;*/
-                                case 'slide_left':
-                                    jQuery('.left-bframe').slick({
-                                        
-                                    });
-                                    /*jQuery(nextSlide).css({'display':'inline','left': '2000px'});
-                                    jQuery(currentSlide).animate({'left' : '-100%'},500,function(){
-                                            jQuery(this).addClass('b-active');
-                                            jQuery(currentSlide).css('left', '100%');
-                                            jQuery(currentSlide).appendTo('.b-frame');
-                                    });
-                                    jQuery(nextSlide).next().animate({ left: '0%'}, 500);*/
-                                    //jQuery(this).removeClass('b-active');
-                                    //jQuery(nextSlide).show("slide", { direction: "left" },'swing',1900, function() { jQuery(this).addClass('b-active');jQuery(currentSlide).hide('slide',{ direction: "left" },'swing', 400, function() { jQuery(this).removeClass('b-active');});});
-                                    //jQuery(currentSlide).hide('slide',{ direction: "right" }, 400, function() { jQuery(this).removeClass('b-active');});
-                                    //jQuery(currentSlide).css({'display':'none'},function() { jQuery(this).removeClass('b-active');});
-                                    //jQuery(currentSlide).animate({'right' : '2000px'},000);
-                                    //jQuery(currentSlide).toggle();
-                                    //jQuery(currentSlide).hide('fast',function() { jQuery(this).removeClass('b-active');});
-                                    break;
-                                case 'fader':
-                                    //console.log('in fade');
-                                    jQuery(nextSlide).fadeIn(duration,function(){jQuery(this).addClass('b-active');});
-                                    jQuery(currentSlide).fadeOut(duration,function(){jQuery(this).removeClass('b-active');});
-                                    break;
-                                case 'rotate':
-                                    jQuery(nextSlide).css({'transform': 'rotate(180deg)'});
-                                    jQuery(nextSlide).toggle(duration,function(){jQuery(this).addClass('b-active');});
-                                    jQuery(currentSlide).hide(function(){jQuery(this).removeClass('b-active');});
-                                    break;
-                                default:
-                                    console.log('default toggle');
-                                    jQuery(nextSlide).show(duration,function(){jQuery(this).addClass('b-active');});
-                                    jQuery(currentSlide).toggle(duration,function(){jQuery(this).removeClass('b-active');});
-
-                            }               
+                        
+                        jQuery(_this).bswap(effect,duration,currentSlide,nextSlide);
+                                      
                                             
                         bshiftcontroller = setTimeout(function(){ _this.banimate(index)},_this[index].duration);  
                        
                     }
                 }
-                );        
+                );
+
         jQuery.fn.extend(
                 {
                     bclick: function(dir) {
                         //console.log(bshiftcontroller);
-                        if(typeof bshiftcontroller !== 'undefined') {
+                        /*if(typeof bshiftcontroller !== 'undefined') {
                             window.clearTimeout(bshiftcontroller);
-                        }
+                            
+                        }*/
                         var slid = jQuery('.b-frame').find('li');
                         var context = jQuery(this).context;
                         var context_parent = context.parentElement;
                         var cp_parent = context_parent.parentElement;
+                        var eff = jQuery(cp_parent).attr('data-effect');
+                        var dur = jQuery(cp_parent).attr('data-speed');
                         var current_slides_index = jQuery(cp_parent).index();
 
                         //if index = 0....set appropriate previous and if index = slidesLength -1 set next slide = to slide 0
@@ -159,15 +151,17 @@
                             var cp_parent_prev = jQuery(cp_parent).prev();
                             var cp_parent_next = jQuery(cp_parent).next();
                         }
-                        console.log(cp_parent.parentElement);
+                        console.log(cp_parent);
                         jQuery(cp_parent).fadeOut();
                         if(dir =="left") { 
-                            jQuery(cp_parent_prev).bheight();                  
+                            jQuery(cp_parent_prev).bheight();
+                            //jQuery(this).bswap(eff,dur,cp_parent,cp_parent_prev);
                             jQuery(cp_parent_prev).fadeIn('fast');
                             --current_slides_index;
                         }
                         else {
                             jQuery(cp_parent_next).bheight();
+                            //jQuery(this).bswap(eff,dur,cp_parent,cp_parent_next);
                             jQuery(cp_parent_next).fadeIn('fast');
                             ++current_slides_index;
                             //console.log(current_slides_index);
@@ -178,10 +172,12 @@
                         if(current_slides_index==slidesLength) {
                             current_slides_index = 0;
                         }
-                        var autoplay = $('.b-frame').attr('data-autoplay');
+
+                        var autoplay = jQuery('.b-frame').attr('data-autoplay');
+                        console.log(jQuery('.b-frame').attr('data-autoplay'));
                         if(autoplay=='true') {
                             bshiftcontroller = setTimeout(function(){
-                            slid.bshift(current_slides_index)
+                                slid.bshift(current_slides_index)
                             },
                             jQuery(slid[current_slides_index]).attr('data-speed'));
                         }
@@ -217,6 +213,7 @@
             slidesLength = slides.length;
             var a = 0;
             $('.b-shift-content span').click(function(){ dir = $(this).attr('data-direction'); $(this).bclick(dir)});
+
             if(autoplay=='true') {
                 bshiftcontroller = setTimeout(function(){slides.bshift(0)},$(slides[0]).attr('data-speed')); 
             }
