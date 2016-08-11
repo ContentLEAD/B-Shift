@@ -7,9 +7,6 @@
     Version: 1.0
     Author URI: http://www.brafton.com
     */
-
-
-
 function b_shift_scripts() {
     wp_enqueue_script('jquery');
     wp_enqueue_script('jquery-ui','https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js',array());
@@ -317,6 +314,4 @@ function bshift_shortcode($atts) {
     return ob_get_clean();
 }
 add_shortcode('bshift', 'bshift_shortcode');
-
-
 ?>

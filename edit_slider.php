@@ -173,18 +173,35 @@
 			<ul>
 			<?php if(get_post_meta($post_id,'Slides_Array',true)) : ?>
 				
-				<?php 	$new_array = array(array());
+				<?php 	
+                        
+                
+                        $new_array = array(array());
 						
 						$count = get_post_meta($post_id,'Slides_Array_Count',true);
 						$new_array = get_post_meta($post_id,'Slides_Array',true);
-						
+                        $slides = array();
+                        
+                        foreach($new_array as $item => $subArray){
+                            for($i=0;$i<$count;++$i){
+                                if(!count($subArray)){
+                                    continue;
+                                }
+                                
+                                $slides[$i][$item] = $subArray[$i];
+                            }
+                        }
+                        $overAllData = get_post_meta($post_id);
 						?>
-						<?php for($i=0;$i<$count;$i++) { ?>
-							
+						<?php for($i=0;$i<$count;$i++) { 
+                                //indiSlide($slides[$i], $overAllData);
+    
+                                ?>
+							     
 								<li style="display: inline-block; vertical-align: top;"><h2 class="<?php if($i==0) { echo 'slide_title engaged'; } else { echo 'slide_title';} ?>">Slide <?php echo $i+1; ?></h2>
 								<div class="<?php if($i==0) { echo 'ib show_slide'; } else { echo 'ib collapse';} ?>">
 									<div class="slide-preview" >
-											<div style="color: #<?php echo $new_array['color'][$i]; ?>; background-image: url('<?php echo $new_array['slide_upload'][$i]; ?>'); background-position: 0; background-size:cover; width: <?php echo $new_array['width'][$i]; ?><?php echo $new_array['width_metric'][$i]; ?>; height: <?php echo get_post_meta($post_id,'Slider_Height',true); ?><?php echo get_post_meta($post_id,'Slider_Height_Metric',true); ?>;padding: 0 5%;">
+											<div style="color: #<?= $new_array['color'][$i]; ?>; background-image: url('<?php echo $new_array['slide_upload'][$i]; ?>'); background-position: 0; background-size:cover; width: <?php echo $new_array['width'][$i]; ?><?php echo $new_array['width_metric'][$i]; ?>; height: <?php echo get_post_meta($post_id,'Slider_Height',true); ?><?php echo get_post_meta($post_id,'Slider_Height_Metric',true); ?>;padding: 0 5%;">
 												<span class="slide-nav-left" data-direction="left"></span>
                     							<span class="slide-nav-right" data-direction="right"></span>
 												<div style="position: relative; top: 50%; transform: translateY(-50%);">
