@@ -128,10 +128,10 @@
                 {
                     bclick: function(dir) {
                         //console.log(bshiftcontroller);
-                        /*if(typeof bshiftcontroller !== 'undefined') {
+                        if(typeof bshiftcontroller !== 'undefined') {
                             window.clearTimeout(bshiftcontroller);
                             
-                        }*/
+                        }
                         var slid = jQuery('.b-frame').find('li');
                         var context = jQuery(this).context;
                         var context_parent = context.parentElement;
@@ -152,17 +152,17 @@
                             var cp_parent_next = jQuery(cp_parent).next();
                         }
                         console.log(cp_parent);
-                        jQuery(cp_parent).fadeOut();
+                        //jQuery(cp_parent).fadeOut();
                         if(dir =="left") { 
                             jQuery(cp_parent_prev).bheight();
-                            //jQuery(this).bswap(eff,dur,cp_parent,cp_parent_prev);
-                            jQuery(cp_parent_prev).fadeIn('fast');
+                            jQuery(this).bswap(eff,dur,cp_parent,cp_parent_prev);
+                            //jQuery(cp_parent_prev).fadeIn('fast');
                             --current_slides_index;
                         }
                         else {
                             jQuery(cp_parent_next).bheight();
-                            //jQuery(this).bswap(eff,dur,cp_parent,cp_parent_next);
-                            jQuery(cp_parent_next).fadeIn('fast');
+                            jQuery(this).bswap(eff,dur,cp_parent,cp_parent_next);
+                            //jQuery(cp_parent_next).fadeIn('fast');
                             ++current_slides_index;
                             //console.log(current_slides_index);
                         }
