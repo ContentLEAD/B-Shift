@@ -115,9 +115,10 @@ jQuery(document).ready(function($){
 
     var qid = $('#new_slide').attr('data-pid');
     var data = {
-        'action': 'bshift_action',
+        'action': 'bshift_action_two',
         'id': qid
         };
+
     $.post(ajaxurl, data, function(response) {
             console.log(response);
             var reta = JSON.parse(response);
@@ -175,22 +176,23 @@ jQuery(document).ready(function($){
 
     $(document).on('click','.add_new_slide',function(e) {
         //$(this).hide();
-        $('#slides ul li').hide();
+        console.log(this);
+        //$('#slides ul li').hide();
         $('.btn_save').parent().show();
         var pid = $(this).attr('data-pid');
         var parent = $(this).context;
         //console.log($(parent).attr('id'));
         //console.log(pid);
         var data = {
-        'action': 'bshift_action',
+        'action': 'bshift_action_three',
         'id': pid
         };
-        //console.log(pid);
+        
 
         //ajaxurl is always defined in the admin header and points to admin-ajax.php
         $.post(ajaxurl, data, function(response) {
-            //console.log(JSON.parse(response));
-            var ret = JSON.parse(response);
+            console.log(JSON.parse(response));
+            /*var ret = JSON.parse(response);
             var width = ret.wid;
             var width_metric = ret.widm;
             var height = ret.hid;
@@ -228,17 +230,17 @@ jQuery(document).ready(function($){
             $('.slide-preview').css({'height': height+'px', 'bottom' : '700px'});
             
             //$(".slide_label").after(dynamic_box); // loading wp_editor function via output buffer in ajax call
-            //console.log(tinyMCE);
+            //console.log(tinyMCE);*/
             tinyMce_init('none');
             
         });
         
-        $('.btn_save').show();
+        /*$('.btn_save').show();
         $(document).on('click','.btn_save', function() { console.log($('.b-current textarea').val());});
         var inp = document.createElement('INPUT');
         var picker = new jscolor(inp);
         picker.fromHSV();
-        $('.btn_save').before('<div class="b-current"><div class="slide-preview"><div class="inner_prev"><div style="position: relative; top: 50%; transform: translateY(-50%);"><div class="option-a" id="text-frame"></div><div class="option-b" id="image_frame"><img src="" id="inner-image" /></div></div></div></div><h4 class="slide_label">Content</h4><textarea hidden="false" class="bshift-editor wp-editor-area" style="height: 182px;" autocomplete="off" cols="40" name="slide_content[]"></textarea><div class="bshift-form-element"><input id="image_url" class="slide_input image_url" name="slide_upload[]" value="" type="text"></input><input class="upload_image_button" value="Add Background" data-target="brafton-end-button-preview" type="button"></input></br></div><div class="bshift-form-element"><h4 style="display:inline">Image Height</h4><input type="text" id="image-height" name="image_height[]" class="slide_input ih" onchange="imageHeight(this.value)"></input></div><div class="bshift-form-element"><h4 style="display:inline">Image Position</h4><select name="image_position[]" class="ip" id="image_position" onchange="shiftImage(this.value);"><option value="center" >Center</option><option value="left" >Left</option><option value="right" >Right</option></select></div><div class="bshift-form-element"><h4>Text Position</h4><select name="text_position[]" class="tp" onchange="shiftText(this.value)"><option value="left">Left</option><option value="right">Right</option><option value="none">Center</option></select></br></div><div class="bshift-form-element"><h4>Image Bottom Adjustment</h4><input type="text" name="position_bottom[]" class="slide_input btm" value=""></input>%</br></div><div class="bshift-form-element"><input id="inner-image-url" class="slide_input image_url" name="image_upload[]" type="text" onchange="showImage(this.value)" ></input><input class="upload_image_button" data-role="dynamic_image" value="Add Image" data-target="slide-button-preview" type="button"></input></div><div class="bshift-form-element"><h4 id="color_label">Content Color</h4></div><div class="bshift-form-element"><h4>Width</h4><input type="text" name="width[]" class="slide_width" value="" ></input><br><select name="width_metric[]" class="slide_width_metric"><option value="px" class="slide_width_metric_px" selected="">Pixels</option><option value="%" class="slide_width_metric_pc" selected="">Percent</option></select></br></div><div class="bshift-form-element"><h4>Delay</h4><input type="text" name="delay[]" value="" class="slide_delay" ></input></div><!--<div class="bshift-form-element"><h4>Effect</h4><select name="effect[]" class="slide_effect"><option value="fader">Fade</option><option value="slide_vertical">Slide Vertical</option><option value="slide_left">Slide Left</option><option value="slide_right">Slide Right</option><option value="toggle">Standard Toggle</option></select></div>--><div class="bshift-form-element"><h4>Index</h4><input type="text" name="index[]" class="slide_index" style="display: block;"></input></div><img src="../wp-content/plugins/B-Shift/img/delete-512.png" data-ref="0" class="delete_slide" title="Delete this slide."/><input type="hidden" name="counter[]"></input></div>');
+        //$('.btn_save').before('<div class="b-current"><div class="slide-preview"><div class="inner_prev"><div style="position: relative; top: 50%; transform: translateY(-50%);"><div class="option-a" id="text-frame"></div><div class="option-b" id="image_frame"><img src="" id="inner-image" /></div></div></div></div><h4 class="slide_label">Content</h4><textarea hidden="false" class="bshift-editor wp-editor-area" style="height: 182px;" autocomplete="off" cols="40" name="slide_content[]"></textarea><div class="bshift-form-element"><input id="image_url" class="slide_input image_url" name="slide_upload[]" value="" type="text"></input><input class="upload_image_button" value="Add Background" data-target="brafton-end-button-preview" type="button"></input></br></div><div class="bshift-form-element"><h4 style="display:inline">Image Height</h4><input type="text" id="image-height" name="image_height[]" class="slide_input ih" onchange="imageHeight(this.value)"></input></div><div class="bshift-form-element"><h4 style="display:inline">Image Position</h4><select name="image_position[]" class="ip" id="image_position" onchange="shiftImage(this.value);"><option value="center" >Center</option><option value="left" >Left</option><option value="right" >Right</option></select></div><div class="bshift-form-element"><h4>Text Position</h4><select name="text_position[]" class="tp" onchange="shiftText(this.value)"><option value="left">Left</option><option value="right">Right</option><option value="none">Center</option></select></br></div><div class="bshift-form-element"><h4>Image Bottom Adjustment</h4><input type="text" name="position_bottom[]" class="slide_input btm" value=""></input>%</br></div><div class="bshift-form-element"><input id="inner-image-url" class="slide_input image_url" name="image_upload[]" type="text" onchange="showImage(this.value)" ></input><input class="upload_image_button" data-role="dynamic_image" value="Add Image" data-target="slide-button-preview" type="button"></input></div><div class="bshift-form-element"><h4 id="color_label">Content Color</h4></div><div class="bshift-form-element"><h4>Width</h4><input type="text" name="width[]" class="slide_width" value="" ></input><br><select name="width_metric[]" class="slide_width_metric"><option value="px" class="slide_width_metric_px" selected="">Pixels</option><option value="%" class="slide_width_metric_pc" selected="">Percent</option></select></br></div><div class="bshift-form-element"><h4>Delay</h4><input type="text" name="delay[]" value="" class="slide_delay" ></input></div><!--<div class="bshift-form-element"><h4>Effect</h4><select name="effect[]" class="slide_effect"><option value="fader">Fade</option><option value="slide_vertical">Slide Vertical</option><option value="slide_left">Slide Left</option><option value="slide_right">Slide Right</option><option value="toggle">Standard Toggle</option></select></div>--><div class="bshift-form-element"><h4>Index</h4><input type="text" name="index[]" class="slide_index" style="display: block;"></input></div><img src="../wp-content/plugins/B-Shift/img/delete-512.png" data-ref="0" class="delete_slide" title="Delete this slide."/><input type="hidden" name="counter[]"></input></div>');
         document.getElementById('color_label').appendChild(inp);
 
         b = document.getElementById("color_label");
@@ -246,7 +248,7 @@ jQuery(document).ready(function($){
         //console.log(c);
         c.setAttribute("name", "color[]");
         c.style.width = "110px";
-        c.style.marginLeft = "10px";
+        c.style.marginLeft = "10px";*/
     });
 
     
