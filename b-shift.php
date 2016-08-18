@@ -7,6 +7,9 @@
     Version: 1.0
     Author URI: http://www.brafton.com
     */
+
+include 'slider_functions.php';
+
 function b_shift_scripts() {
     wp_enqueue_script('jquery');
     wp_enqueue_script('jquery-ui','https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js',array());
@@ -314,4 +317,14 @@ function bshift_shortcode($atts) {
     return ob_get_clean();
 }
 add_shortcode('bshift', 'bshift_shortcode');
+
+function dynamicNewSlide() {
+	    global $wpdb;
+	    $master = get_post_meta($post_id);
+	    $master['totalSlides'] = 3;
+	    indiSlide(null, $master);
+	    die();
+	}
+
+	add_action('wp_ajax_bshift_action_three', 'dynamicNewSlide');
 ?>
