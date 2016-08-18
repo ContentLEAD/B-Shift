@@ -1,13 +1,10 @@
 <?php
 	
     include_once 'slider_functions.php';
-	if(isset($_POST['add_new_slider'])) {
+	
 
-		$post_id = get_the_id(); 
-	} else {
-		$post_id = isset($_GET['slider_id'])? $_GET['slider_id'] : $_POST['slider_id'];
-	}
-
+	$post_id = isthisanewslider();
+	//areweupdating();
 	
 	if(isset($_POST['update'])) {
 		
@@ -192,6 +189,7 @@
                             }
                         }
                         $overAllData = get_post_meta($post_id);
+                        
                         
 						 for($i=0;$i<$count;$i++) { 
                                 indiSlide($slides[$i], $overAllData);
