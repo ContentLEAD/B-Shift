@@ -1,10 +1,9 @@
 <?php
-	
-    include_once 'slider_functions.php';
-	
+
+	include_once 'slider_functions.php';
 
 	$post_id = isthisanewslider();
-	//areweupdating();
+
 	
 	if(isset($_POST['update'])) {
 		
@@ -57,19 +56,12 @@
 					$temp_array['index'][$index] = $index;
 			} else{
 					$temp_array['slide_content'][$i] = $_POST['slide_content'][$i];
-					//if(isset($temp_array['image_upload'][$i])) {
-							$temp_array['image_upload'][$i] = ($_POST['image_upload'][$i])? $_POST['image_upload'][$i] : '';
-							$temp_array['image_height'][$i] = ($_POST['image_height'][$i])? $_POST['image_height'][$i] : '';
-							$temp_array['image_position'][$i] = ($_POST['image_position'][$i])? $_POST['image_position'][$i] : '';
-							$temp_array['text_position'][$i] = ($_POST['text_position'][$i])? $_POST['text_position'][$i] : '';
-							$temp_array['position_bottom'][$i] = ($_POST['position_bottom'][$i])? $_POST['position_bottom'][$i] : 0;
-					/*} else {
-							$temp_array['image_upload'][$i] = '';
-							$temp_array['image_height'][$i] = '';
-							$temp_array['image_position'][$i] = '';
-							$temp_array['text_position'][$i] = '';
-							$temp_array['position_bottom'][$i] = 0;
-					}*/
+					$temp_array['image_upload'][$i] = ($_POST['image_upload'][$i])? $_POST['image_upload'][$i] : '';
+					$temp_array['image_height'][$i] = ($_POST['image_height'][$i])? $_POST['image_height'][$i] : '';
+					$temp_array['image_position'][$i] = ($_POST['image_position'][$i])? $_POST['image_position'][$i] : '';
+					$temp_array['text_position'][$i] = ($_POST['text_position'][$i])? $_POST['text_position'][$i] : '';
+					$temp_array['position_bottom'][$i] = ($_POST['position_bottom'][$i])? $_POST['position_bottom'][$i] : 0;
+					
 					$temp_array['color'][$i] = $_POST['color'][$i];
 					//$temp_array['effect'][$i] = $_POST['effect'][$i];
 					//$temp_array['height'][$i] = $_POST['height'][$i];
@@ -97,7 +89,6 @@
 				}
 		}
 	}
-
  ?>
 
 	<div class="container bshift">
@@ -172,7 +163,6 @@
 				
 				<?php 	
                         
-                
                         $new_array = array(array());
 						
 						$count = get_post_meta($post_id,'Slides_Array_Count',true);
@@ -203,11 +193,3 @@
 			<input type="hidden" name="save_slides" data-slide-staus="" />
 			
 		</form>
-		
-		
-
-
-
-	
-
-

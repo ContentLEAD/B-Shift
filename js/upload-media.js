@@ -2,8 +2,9 @@ jQuery(document).ready(function($){
     $(document).on('click','.upload_image_button',function(e) {
         var _ = this;
     	var i = $(_).attr('data-id');
-
-    	console.log(i);
+        var classes = $(_).attr('class');
+    	classes = classes.split(" ");
+        var role = classes[1];
         jQuery.data(document.body, 'prevElement', $(this).prev());
         //console.log($(this).prev());
         jQuery.data(document.body, 'nextElement', $(this).next());
@@ -23,9 +24,9 @@ jQuery(document).ready(function($){
             // We convert uploaded_image to a JSON object to make accessing it easier
             // Output to the console uploaded_image
             var image_url = uploaded_image.toJSON().url;
-            console.log(image_url);
-            if($(_).attr('data-role')=="dynamic_image"){
-                    //$('#inner-image').css('display','inline');
+            console.log(role);
+            if(role=="background"){
+                    $('#slide-preview-inner-'+i).css({'background-image': 'url('+image_url+')', 'background-size': 'cover', 'background-position': '0px center'});
                     $('#inner-image').attr('src',image_url);
                     $('#inner-image').css({'display':'inline', 'height':'20px'});
             }

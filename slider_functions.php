@@ -24,7 +24,7 @@ function indiSlide($slide = null, $master = null){
 								            'width' => $master == null? 0 : $master['Width'][0],
 								            'width_metric' => $master == null? 0 : $master['Width_Metric'][0],
 								            'delay' => '',
-								            'slide_upload' => '',
+								            'slide_upload' => ''
 								            
 								        );
 								        $slide = $defaults;
@@ -37,7 +37,7 @@ function indiSlide($slide = null, $master = null){
 	    							<li style="display: inline-block; vertical-align: top;"><h2 class="<?php if($index==0) { echo 'slide_title engaged'; } else { echo 'slide_title';} ?>">Slide <?php echo $index+1; ?></h2>
 									<div class="<?php if($index==0) { echo 'ib show_slide'; } else { echo 'ib collapse';} ?>">
 										<div class="slide-preview" id="slide-preview-<?=$index ?>">
-												<div style="color: #<?= $color; ?>; background-image: url('<?php echo $slide_upload; ?>'); background-position: 0; background-size:cover; width: <?php echo $width; ?><?php echo $width_metric; ?>; height: <?php echo $master['Slider_Height'][0]; ?><?php echo $master['Slider_Height_Metric'][0]; ?>;padding: 0 5%;">
+												<div id="slide-preview-inner-<?=$index ?>"style="color: #<?= $color; ?>; background-image: url('<?php echo $slide_upload; ?>'); background-position: 0; background-size:cover; width: <?php echo $width; ?><?php echo $width_metric; ?>; height: <?php echo $master['Slider_Height'][0]; ?><?php echo $master['Slider_Height_Metric'][0]; ?>;padding: 0 5%;">
 													<span class="slide-nav-left" data-direction="left"></span>
 	                    							<span class="slide-nav-right" data-direction="right"></span>
 													<div style="position: relative; top: 50%; transform: translateY(-50%);">
@@ -136,7 +136,7 @@ function indiSlide($slide = null, $master = null){
 										</div>
 										<div class="bshift-form-element">
 											<input class="slide_input image_url" name="slide_upload[]" value="<?php echo $slide_upload; ?>" type="text"></input>
-											<input class="upload_image_button" value="Add Background" data-target="slide-button-preview" type="button"></input>
+											<input class="upload_image_button background" value="Add Background" data-id = "<?php echo $index; ?>" data-target="slide-button-preview" type="button"></input>
 										</div>
 											<img src="<?php echo plugin_dir_url(__FILE__); ?>/img/delete-512.png" class="delete_slide" title="Delete this slide."/>
 											<!--<img src="<?php echo plugin_dir_url(__FILE__); ?>/img/prev.png" class="b-preview" title="Preview this slide." />-->
