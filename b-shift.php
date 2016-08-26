@@ -7,6 +7,9 @@
     Version: 1.0
     Author URI: http://www.brafton.com
     */
+
+
+
 function b_shift_scripts() {
     wp_enqueue_script('jquery');
     wp_enqueue_script('jquery-ui','https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js',array());
@@ -40,11 +43,13 @@ function load_wp_media_files($hook) {
     wp_enqueue_script('thickbox');
     wp_enqueue_script('media-models');
     wp_enqueue_script('media-upload');
-    //wp_enqueue_script('jquery-ui');
     wp_enqueue_style('jquery-ui','//code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css');
-    if($hook !== 'post.php') {
-                        wp_enqueue_style('bootstrap','https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
-                    }
+    echo 'hook'.$hook;
+    if ($hook=='toplevel_page_B-Shift' || $hook=='admin_page_edit_slider' || $hook == 'admin_page_slider_settings_page') {
+    
+                wp_enqueue_style('bootstrap','https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+                
+    }
     wp_enqueue_style('bshift',plugin_dir_url(__FILE__).'css/bshift.css', array());
     wp_enqueue_style('bshift',plugin_dir_url(__FILE__).'css/bshift.css', array());
     wp_enqueue_script('add-slider',plugin_dir_url(__FILE__).'js/add_slider.js', array());
@@ -60,6 +65,7 @@ add_action('admin_enqueue_scripts','load_wp_media_files' );
 <?php
 function b_shift_admin() {
     include('b_shift_import_admin.php');
+    include('slider_functions.php');
 
    
 }
@@ -84,8 +90,14 @@ function b_shift_admin_actions() {
         'b_shift_submenu_page_callback'
  );
 
-
 }
+
+function b_shift_admin_body_class( $classes ) {
+    return "$classes bshift";
+    
+}
+
+add_filter( 'admin_body_class', 'b_shift_admin_body_class' );
 
 function b_shift_submenu_page_callback() {
     if(isset($_POST['add_new_slider'])){
@@ -314,4 +326,17 @@ function bshift_shortcode($atts) {
     return ob_get_clean();
 }
 add_shortcode('bshift', 'bshift_shortcode');
+
+function dynamicNewSlide() {
+        include_once('slider_functions.php');
+	    global $wpdb;
+        $post_id = $_POST['id'];
+	    $master = get_post_meta($post_id);
+	    $master['totalSlides'] = 3;
+	    indiSlide(null, $master);
+        
+	    die();
+	}
+
+	add_action('wp_ajax_bshift_action_three', 'dynamicNewSlide');
 ?>

@@ -2,8 +2,9 @@ jQuery(document).ready(function($){
     $(document).on('click','.upload_image_button',function(e) {
         var _ = this;
     	var i = $(_).attr('data-id');
-
-    	console.log(i);
+        var classes = $(_).attr('class');
+    	classes = classes.split(" ");
+        var role = classes[1];
         jQuery.data(document.body, 'prevElement', $(this).prev());
         //console.log($(this).prev());
         jQuery.data(document.body, 'nextElement', $(this).next());
@@ -14,20 +15,24 @@ jQuery(document).ready(function($){
             title: 'Upload Image',
             // mutiple: true if you want to upload multiple files at once
             multiple: false
-        }).open()
+        }).open(i)
         .on('select', function(e){
             
-            //console.log($('.slide-preview div'));
+            console.log(e);
             // This will return the selected image from the Media Uploader, the result is an object
             var uploaded_image = image.state().get('selection').first();
             // We convert uploaded_image to a JSON object to make accessing it easier
             // Output to the console uploaded_image
             var image_url = uploaded_image.toJSON().url;
             console.log(image_url);
-            if($(_).attr('data-role')=="dynamic_image"){
-                    //$('#inner-image').css('display','inline');
-                    $('#inner-image').attr('src',image_url);
-                    $('#inner-image').css({'display':'inline', 'height':'20px'});
+            if(role=="background"){
+                    $('.show_slide .slide-preview-inner').css({'background-image': 'url('+image_url+')', 'background-size': 'cover', 'background-position': '0px center'});
+                    //$('#inner-image').attr('src',image_url);
+                    //$('#inner-image').css({'display':'inline', 'height':'20px'});
+            } else {
+                    $('.show_slide .slide-preview-inner .option-b img').attr('src',image_url);
+                    //console.log(i);
+
             }
                 // Let's assign the url value to the input field
                 var inputText = jQuery.data(document.body, 'prevElement');
@@ -38,7 +43,7 @@ jQuery(document).ready(function($){
                 if(inputText != undefined && inputText != '')
                 {
                     inputText.val(image_url);
-                    //$('.much_hate').css({'background-image': 'url('+image_url+')', 'background-size': 'cover', 'background-position': '0px center'});
+                    
                     imgPreview.attr('src', image_url);
                     
                 }
