@@ -44,7 +44,7 @@ function load_wp_media_files($hook) {
     wp_enqueue_script('media-models');
     wp_enqueue_script('media-upload');
     wp_enqueue_style('jquery-ui','//code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css');
-    echo 'hook'.$hook;
+    
     if ($hook=='toplevel_page_B-Shift' || $hook=='admin_page_edit_slider' || $hook == 'admin_page_slider_settings_page') {
     
                 wp_enqueue_style('bootstrap','https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
