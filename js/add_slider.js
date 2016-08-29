@@ -185,6 +185,9 @@ jQuery(document).ready(function($){
         var _this = this;
         //$('#slides ul li').hide();
         $('.btn_save').parent().show();
+        //$('.ib collapse').removeClass('collapse');
+        //$('.show_slide').addClass('collapse');
+
         var pid = $(this).attr('data-pid');
         var parent = $(this).context;
         //console.log($(parent).attr('id'));
@@ -199,6 +202,34 @@ jQuery(document).ready(function($){
         $.post(ajaxurl, data, function(response) {
             
             $(_this.parentElement).before(response);
+            //$('.ib show_slide').css('display','none !important');
+            //$('.ib show_slide').css('visibility','collapse');
+            var par = $(_this).parent().prev();
+            var div = $(par).children();
+            var show = div[1];
+            var show_slide = $('#slides').find('.show_slide');
+            $(show_slide).removeClass('show_slide');
+            $(show_slide).addClass('collapse');
+            var active = $('#slides').find('.ib');
+            var heading = $('#slides').find('.slide_title');
+            var heading_length = heading.length;
+            var new_head = $(heading[heading_length-1]);
+
+            console.log(heading_length);
+            var engage = $('#slides').find('.engaged');
+            console.log(engage);
+            $(engage).removeClass('engaged');
+            $(new_head).addClass('engaged');
+            $('.add_new_slide').hide();
+            var len = active.length;
+            //console.log(active_li);
+            $(show).removeClass('collapse');
+            $(show).addClass('show_slide');
+            console.log(show);
+            //console.log(div[1]);
+            
+            console.log($(_this).parent().prev());
+
             jscolor.installByClassName("jscolor");
             tinyMce_init('none');
             
@@ -210,6 +241,9 @@ jQuery(document).ready(function($){
     
     
 });
+
+
+
 
 function shiftImage(val) {
         console.log(val);

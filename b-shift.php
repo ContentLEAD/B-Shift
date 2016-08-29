@@ -244,15 +244,7 @@ function bshift_shortcode($atts) {
   
 
     
-    ob_start(); /*
-    var_dump($slides['content']);
-    echo '</br>'. $slider_title;
-    echo '<p>';
-    for($i=0;$i<$slide_count;$i++) {
-        echo $slides['content'][$i];
-        echo'</br>';
-    }
-    echo '</p>'; */?>
+    ob_start(); ?>
 
     
         <?php 
@@ -332,11 +324,9 @@ function dynamicNewSlide() {
 	    global $wpdb;
         $post_id = $_POST['id'];
 	    $master = get_post_meta($post_id);
-	    $master['totalSlides'] = 3;
 	    indiSlide(null, $master);
         
 	    die();
 	}
 
 	add_action('wp_ajax_bshift_action_three', 'dynamicNewSlide');
-?>
