@@ -9,11 +9,16 @@ function isthisanewslider(){
 		}
 }
 
-function indiSlide($slide = null, $master = null){ 
+function indiSlide($slide = null, $master = null){
+
+									/*if(isset($_POST['save_slides'])) {
+										$active = $_POST['active'];
+									} else { } */
+
 								    if($slide === null){
 								    	//echo 'slide is null';
 								    	//echo '<pre>';
-								    	//var_dump($master['Slider_Width_Metric'][0]);
+								    	//var_dump($master['Slider_Width_Metric'][0]);								    	
 								        $defaults = array(
 								            'index' => $master['Slides_Array_Count'][0]==null? 0 : $master['Slides_Array_Count'][0],
 								            'slide_content'  => '',
@@ -26,6 +31,7 @@ function indiSlide($slide = null, $master = null){
 								            'width' => $master['Slider_Width'][0] == null? 0 : $master['Slider_Width'][0],
 								            'width_metric' => $master['Slider_Width_Metric'][0] == null? '%' : $master['Slider_Width_Metric'][0],
 								            'delay' => $master['Slider_Delay'][0]==null? '' : $master['Slider_Delay'][0],
+								            'active' => true,
 								            'slide_upload' => ''
 								            
 								        );
@@ -33,27 +39,36 @@ function indiSlide($slide = null, $master = null){
 								    }
 								    // $slide['index'] will replace $i;
 								    extract($slide);
-								    
+								    $show_image = $image_upload != ''? 'b-shift-inline' : 'b-shift-none';
+								    $default_slide = isset($_POST['visible'])? (int)$_POST['visible'] : 0;
+								    /*if(!$_POST) {
+										if($index==0) {
+											$active = true;
+										}
+									}
+									if(isset($_POST['save_slides'])) {
+										$active = $_POST['active'];
+									}*/ 								    
 								    
 								    ?>
 	    
-	    							<li data-id="<?php echo $index; ?>" style="display: inline-block; vertical-align: top;"><h2 class="<?php if($index==0) { echo 'slide_title engaged'; } else { echo 'slide_title';} ?>">Slide <?php echo $index+1; ?></h2>
-									<div id = "slide-<?php echo $index; ?>" class="<?php if($index==0) { echo 'ib show_slide'; } else { echo 'ib collapse';} ?>">
+	    							<li data-id="<?php echo $index; ?>" style="display: inline-block; vertical-align: top;"><h2 class="<?php if($index==$default_slide) { echo 'slide_title engaged'; } else { echo 'slide_title';} ?>">Slide <?php echo $index+1; ?></h2>
+									<div id = "slide-<?php echo $index; ?>" class="<?php if($index==$default_slide) { echo 'ib show_slide'; } else { echo 'ib collapse';} ?>">
 										<div class="slide-preview" id="slide-preview-<?=$index ?>">
-												<div id="slide-preview-inner-<?=$index ?>" class="slide-preview-inner" style="color: #<?= $color; ?>; background-image: url('<?php echo $slide_upload; ?>'); background-position: 0; background-size:cover; width: <?php echo $width; ?><?php echo $width_metric; ?>; height: <?php echo $master['Slider_Height'][0]; ?><?php echo $master['Slider_Height_Metric'][0]; ?>;padding: 0 5%;">
+												<div id="slide-preview-inner-<?=$index ?>" class="slide-preview-inner" style="color: #<?= $color ?>; background-image: url('<?php echo $slide_upload; ?>'); background-position: 0; background-size:cover; width: <?php echo $width; ?><?php echo $width_metric; ?>; height: <?php echo $master['Slider_Height'][0]; ?><?php echo $master['Slider_Height_Metric'][0]; ?>;padding: 0 5%;">
 													<span class="slide-nav-left" data-direction="left"></span>
 	                    							<span class="slide-nav-right" data-direction="right"></span>
 													<div style="position: relative; top: 50%; transform: translateY(-50%);">
-														<div class="option-a" style="float: <?php echo $text_position; ?>">
+														<div class="option-a" id="option-a-<?= $index ?>" style="float: <?php echo $text_position; ?>">
 														<?php 
 															echo html_entity_decode($slide_content); 
 																 
 															?>
 														</div>
-														<div class="option-b" style="float: <?php echo $image_position; ?>; bottom: <?php $position_bottom; ?> %;">
-															
-																<img src="<?php	echo $image_upload ?>" class="inner-image-<?php echo $index; ?>" height="<?php echo $image_height; ?>px" width="auto" style="display: <?php echo $image_upload==''? 'inline' : 'none'; ?>" />
-															
+														<div class="option-b" id="option-b-<?= $index ?>" style="float: <?php echo $image_position; ?>; bottom: <?php $position_bottom; ?> %;">
+																
+																<img src="<?php	echo $image_upload ?>" class="inner-image-<?php echo $index.' '.$show_image; ?>" height="<?php echo $image_height; ?>px" width="auto" />
+																
 															
 														</div>	
 													</div>
@@ -75,7 +90,7 @@ function indiSlide($slide = null, $master = null){
 										<div class="bshift-form-element">
 										<h4>Image Position</h4>
 										
-											<select name="image_position[]" class="ip">
+											<select name="image_position[]" class="ip" data-id="<?= $index; ?>">
 												<option value="left" <?php if($image_position == 'left'){echo("selected");}?>>Left</option>
 												<option value="right" <?php if($image_position == 'right'){echo("selected");}?>>Right</option>
 												<option value="none" <?php if($image_position == 'none'){echo("selected");}?>>Center</option>
@@ -84,7 +99,7 @@ function indiSlide($slide = null, $master = null){
 										<div class="bshift-form-element">
 										<h4>Text Position</h4>
 										
-											<select name="text_position[]" class="tp">
+											<select name="text_position[]" class="tp" data-id="<?= $index; ?>">
 												<option value="none" <?php if($text_position == 'none'){echo("selected");}?>>Center</option>
 												<option value="left" <?php if($text_position == 'left'){echo("selected");}?>>Left</option>
 												<option value="right" <?php if($text_position == 'right'){echo("selected");}?>>Right</option>					
@@ -92,14 +107,14 @@ function indiSlide($slide = null, $master = null){
 										</div>
 										<div class="bshift-form-element">
 										<h4>Image Bottom Adjustment</h4>
-										<input type="text" name="position_bottom[]" class="slide_input btm" value="<?php echo $position_bottom;  ?>" />%</br>
+										<input type="text" name="position_bottom[]" class="slide_input btm" value="<?php echo $position_bottom;  ?>" data-id="<?= $index; ?>" />%</br>
 										</div>
 										<div class="bshift-form-element">
 										<input class="slide_input image_url_<?php echo $index; ?>" name="image_upload[]" value="<?php echo $image_upload; ?>" type="text" />
 										<input class="upload_image_button" value="Add Image" data-id="<?php echo $i; ?>" data-target="slide-button-preview" type="button"></input>
 										</div>
 										<div class="bshift-form-element">
-										<h4>Content Color</h4><input type="text" class="jscolor jscolor-active slide_input" name="color[]" value=<?php echo $color;?>></br>
+										<h4>Content Color</h4><input type="text" data-id="<?= $index ?>" class="jscolor jscolor-active slide_input" name="color[]" value=<?php echo $color;?> /></br>
 										</div>
 										<div class="bshift-form-element">
 										<h4>Width</h4>
@@ -145,7 +160,8 @@ function indiSlide($slide = null, $master = null){
 											<!--<img src="<?php echo plugin_dir_url(__FILE__); ?>/img/prev.png" class="b-preview" title="Preview this slide." />-->
 											
 											<!--<input type="submit" name="delete[]" value="delete slide" data-ref="<?php echo $i; ?>" class="delete_slide"></input>-->
-											<input type="hidden" name="counter[]"></input>
+											<input type="hidden" name="counter[]" />
+											<input type="hidden" name="active[]" value="<?= $active!=null? $active : false; ?>" />
 											
 									</div> <!--end .ib -->
 								</li>

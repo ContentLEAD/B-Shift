@@ -31,6 +31,7 @@ jQuery(document).ready(function($){
                     //$('#inner-image').css({'display':'inline', 'height':'20px'});
             } else {
                     $('.show_slide .slide-preview-inner .option-b img').attr('src',image_url);
+                    $('.show_slide .slide-preview-inner .option-b img').css('display','inline');
                     //console.log(i);
 
             }
@@ -51,10 +52,10 @@ jQuery(document).ready(function($){
 
              	img_url = $('.image_url_'+i).val();
              	
-             	$('.inner-image-'+i).attr('src',img_url);
-             	$('div.option-b .inner-image-'+i).css('display', 'inline');
+             	/*$('.inner-image-'+i).attr('src',img_url);
+             	//$('div.option-b .inner-image-'+i).css('display', 'inline');
                 $('.inner_prev').css({'background-image': 'url('+background_url+')', 'background-size': 'cover', 'background-position': '0px center'});
-                $('.btn_save').show();
+                $('.btn_save').show();*/
 
           
         });

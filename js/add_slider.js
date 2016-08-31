@@ -1,5 +1,72 @@
+(function($, window){
+
+window.imageHeightChange = function(e) {
+
+    img_height = $(this).val();
+    console.log(img_height);
+    var index = $(this).attr('data-index');
+    $('.inner-image-'+index).css('height',img_height);
+
+}
+
+window.imageBottomAdj = function(e) {
+
+        bottom = $(this).val();
+        var index = $(this).attr('data-id');
+        $('#option-b-'+index).css('bottom', bottom+'%' );
+
+}
+
+window.textPositionChange = function(e) {
+
+        console.log(e);
+        var index = $(this).attr('data-id');
+        text_position = $(this).val();
+        if(text_position=="center") {
+            $('#option-a-'+index).css({'float': text_position, 'transform': "none" });
+        } else {
+            $('#option-a-'+index).css({'float': text_position, 'transform': "translateY(-50%)" });
+        }
+            
+}
+
+window.imagePositionChange = function(e) {
+
+        console.log(e);
+        var index = $(this).attr('data-id');
+        image_position = $(this).val();
+        console.log(image_position);
+        if(image_position=="none") {
+            $('#option-b-'+index).css({'float': image_position, 'transform': "none" });
+        } else {
+            $('#option-b-'+index).css({'float': image_position, 'transform': "translateY(-50%)" });
+        }
+
+}
+
+window.changeContentColor = function(e) {
+
+        var color_input = $(this).val();
+        var index = $(this).attr('data-id');
+        console.log(index);
+        $('#slide-preview-inner-'+index).css('color','#'+color_input);
+        console.log($('#slide-preview-inner-'+index).css('color'));
+}
+
+window.initializeFormGrouping = function() {
+        $('.jscolor').on('blur', changeContentColor);
+        $('.btm').on('keyup', imageBottomAdj);
+        $('.ih').on('keyup', imageHeightChange);
+        $('.ip').on('change', imagePositionChange);
+        $('.tp').on('change',{ obj: $(this)}, textPositionChange);
+}
+
+
+}(jQuery, window));
+
 jQuery(document).ready(function($){
 
+    initializeFormGrouping();
     var button_color = $('.b-shift-content').attr('color');
     $('.slick-arrow').attr('color', button_color);
 
@@ -54,20 +121,12 @@ jQuery(document).ready(function($){
         $('.inner-image-'+i).css('height',img_height);
     });
 
-    $('.btm').keyup(function() {
+    /*$('.btm').keyup(function() {
         bottom = $(this).val();
         $('.option-b').css('bottom', bottom+'px' );
-    });
+    });*/
 
-   $('.tp').on('change', function() {
-        text_position = $(this).val();
-        if(text_position=="center") {
-            $('.option-a').css({'float': text_position, 'transform': "none" });
-        } else {
-            $('.option-a').css({'float': text_position, 'transform': "translateY(-50%)" });
-        }
-        
-   });
+   
 
    $('.show_slide .ip').on('change',function() {
         image_position = $(this).val();
@@ -79,10 +138,6 @@ jQuery(document).ready(function($){
         }
    });
 
-   $('.ih').on('keyup', function() {
-        
-        
-   });
 
    $('#slide_width').keyup(function() {
 
@@ -93,20 +148,15 @@ jQuery(document).ready(function($){
         $('.slide-preview div').css('width', new_width);
    });
 
-    $('.jscolor').on('blur', function() {
+ 
 
-          var color_input = $(this).val();
-          $('.show_slide .slide-preview div').css('color','#'+color_input);      
-
-    });
-
-    $(document).on('click', function() {
+    /*$(document).on('click', function() {
 
 
           var color_input = $('.jscolor-active').val();
           $('.slide-preview div').css('color','#'+color_input);      
 
-    });
+    });*/
 
     function dynamicText(a,b) {
     	
@@ -130,17 +180,18 @@ jQuery(document).ready(function($){
             slides_length = reta.lid;
         });
 
-    $('.slide_input').mousedown(function() {
+    /*$('.slide_input').mousedown(function() {
         $('.btn_save').show();
     });
 
     $('textarea').mousedown(function() {
         $('.btn_save').show();
-    });
+    });*/
 
     $(document).on('click','.slide_title',function( event ) {
 
-
+        var current_index = $(this).parent().attr('data-id');
+        $('input[name="visible"]').val(current_index);
         var parent = $(this).parent();
         var grand_parent = $(parent).parent();
         //console.log(grand_parent);
@@ -202,6 +253,7 @@ jQuery(document).ready(function($){
         $.post(ajaxurl, data, function(response) {
             
             $(_this.parentElement).before(response);
+            initializeFormGrouping();
             //$('.ib show_slide').css('display','none !important');
             //$('.ib show_slide').css('visibility','collapse');
             var par = $(_this).parent().prev();

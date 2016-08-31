@@ -5,7 +5,8 @@
 	vertical-align: top; 
 	background-color: #dedede;
 	padding: 5px;
-	width: 90%;
+	width: 99%;
+	display: block;
 }
 .b-current {
 	margin-top: 30px;
@@ -187,7 +188,12 @@ html {
 .option-a, .option-b {
 	position: relative;
 }
-.option-b img {
+
+.b-shift-inline {
+	display: inline;
+}
+
+.b-shift-none {
 	display: none;
 }
 .btm {
@@ -197,7 +203,7 @@ html {
 	height: 100%;
 }
 .bshift-admn-banner {
-	width: 90%;
+	width: 100%;
 }
 .container {
 	max-width: 100%;
@@ -211,7 +217,7 @@ html {
 	border: 2px solid;
 	height: 120px;
 	margin: 2px;
-	width: 200px;
+	width: 24.5%;
 }
 .bshift-form-element input {
 	width: 90%;

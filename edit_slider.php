@@ -32,7 +32,7 @@
 
 	if(isset($_POST['save_slides'])) {
 		echo '</br>';
-		//echo '<pre>';
+		echo '<pre>';
 		var_dump($_POST);
 		
 		$len = (sizeof($_POST['counter']))? sizeof($_POST['counter']) : sizeof($_POST['content']);
@@ -154,10 +154,11 @@
 
 	</div>
 		<?php if(sizeof(get_post_meta($post_id,'Slides_Array',true))=="1") : ?>
-			<h3 class="add_slide_btn add_new_slide" id="new_slide" data-pid="<?php echo $post_id; ?>">Add Slide</h3>
+			<!--<h3 class="add_slide_btn add_new_slide" id="new_slide" data-pid="<?php echo $post_id; ?>">Add Slide</h3>-->
 		<?php endif; ?>
 		<form action="admin.php?page=edit_slider&slider_id=<?php echo $post_id; ?>" method="post" id="slides" class="container <?php echo $post_id; ?>">
-			<input type="hidden" name="pid" value="<?php echo $post_id; ?>"></input>
+			<input type="hidden" name="pid" value="<?php echo $post_id; ?>" />
+			<input type="hidden" name="visible" value="1" />
 			<ul>
 
 			<?php 	$overAllData = get_post_meta($post_id);
@@ -193,6 +194,6 @@
 			<li style="display: inline-block; vertical-align: bottom;"><h2 class="add_new_slide" data-pid="<?php echo $post_id; ?>"> + </h2> </li>
 			<li style="display: inline-block; vertical-align: bottom;"><input style="" value="save/edit" class="btn_save" type="submit"></li>
 			</ul>
-			<input type="hidden" name="save_slides" data-slide-staus="" />
+			<input type="hidden" name="save_slides" data-slide-status="" />
 			
 		</form>
