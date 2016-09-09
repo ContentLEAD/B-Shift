@@ -31,9 +31,9 @@
 
 
 	if(isset($_POST['save_slides'])) {
-		echo '</br>';
+		/*echo '</br>';
 		echo '<pre>';
-		var_dump($_POST);
+		var_dump($_POST);*/
 		
 		$len = (sizeof($_POST['counter']))? sizeof($_POST['counter']) : sizeof($_POST['content']);
 		$temp_array = array(array());
@@ -91,7 +91,7 @@
 	}
  ?>
 
-	<div class="container bshift">
+	<div class="bshift">
 		<img src="<?php echo plugin_dir_url(__FILE__); ?>/img/banner_brafton.jpg" class="bshift-admn-banner">
 		<form action=" " class="row gen-settings-form" method="post">
 			<div class="col-md-3">
@@ -156,7 +156,7 @@
 		<?php if(sizeof(get_post_meta($post_id,'Slides_Array',true))=="1") : ?>
 			<!--<h3 class="add_slide_btn add_new_slide" id="new_slide" data-pid="<?php echo $post_id; ?>">Add Slide</h3>-->
 		<?php endif; ?>
-		<form action="admin.php?page=edit_slider&slider_id=<?php echo $post_id; ?>" method="post" id="slides" class="container <?php echo $post_id; ?>">
+		<form action="admin.php?page=edit_slider&slider_id=<?php echo $post_id; ?>" method="post" id="slides" class="<?php echo $post_id; ?>">
 			<input type="hidden" name="pid" value="<?php echo $post_id; ?>" />
 			<input type="hidden" name="visible" value="1" />
 			<ul>

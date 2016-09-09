@@ -102,9 +102,16 @@ jQuery(document).ready(function($){
                                     dynamicText(latest,indx);
                                     });
                                 editor.on('change', function(editor){
+                                    console.log('changed');
                                     var mce = $('#tinymce');
+                                    var active = document.activeElement;
+                                    var parent = active.parentNode
+                                    var g_parent = parent.parentNode;
+                                    var gg_parent = g_parent.parentNode;
+                                    var gg_parent_prev = $(gg_parent).prev();
+                                    var indx = $(gg_parent_prev).attr('data-index')
                                     var latest = tinyMCE.activeEditor.getContent({format : 'html'});
-                                    dynamicText(latest);
+                                    dynamicText(latest,indx);
 
                                     });
                             }
@@ -164,6 +171,7 @@ jQuery(document).ready(function($){
         var dynamic_height = $('input[name="height"]').val();
         $('.inner_prev').css('height',dynamic_height);
     }
+
     tinyMce_init('textareas');
     
             
