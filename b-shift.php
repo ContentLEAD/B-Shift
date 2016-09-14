@@ -116,6 +116,8 @@ add_action('admin_menu', 'b_shift_admin_actions');
 
 add_action( 'init', 'B_Shift_post_register' );
 
+
+
 function B_Shift_post_register() {
 
 register_post_type( 'b-shift-slider',
@@ -125,13 +127,15 @@ register_post_type( 'b-shift-slider',
         'singular_name' => __( 'Slider' )
       ),
       'public' => false,
-      'map_meta_cap'=> true,
-      'capabilities'=>array('delete_post'=>'true'),
+      'map_meta_cap'=>'true',
       'menu_icon'   => 'dashicons-products'
 
     )
   );
 }
+
+
+
 
 function create_slider() {
 
@@ -329,4 +333,16 @@ function dynamicNewSlide() {
 	    die();
 	}
 
-	add_action('wp_ajax_bshift_action_three', 'dynamicNewSlide');
+add_action('wp_ajax_bshift_action_three', 'dynamicNewSlide');
+
+add_action( 'wp_ajax_bshift_delete_post', 'bshift_delete_post' );
+
+function bshift_delete_post(){
+
+    
+    wp_delete_post( $_REQUEST['id'] );
+    echo 'success';
+    die();
+
+}
+

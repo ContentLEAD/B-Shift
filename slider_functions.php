@@ -28,12 +28,12 @@ function indiSlide($slide = null, $master = null){
 								            'text_position' => 'none',
 								            'position_bottom' => 0,
 								            'color' => '',
+								            'bgcolor'=> $master['Slider_Bgcolor'][0],
 								            'width' => $master['Slider_Width'][0] == null? 0 : $master['Slider_Width'][0],
 								            'width_metric' => $master['Slider_Width_Metric'][0] == null? '%' : $master['Slider_Width_Metric'][0],
 								            'delay' => $master['Slider_Delay'][0]==null? '' : $master['Slider_Delay'][0],
 								            'active' => true,
-								            'slide_upload' => ''
-								            
+								            'slide_upload' => ''								           
 								        );
 								        $slide = $defaults;								       
 								    }
@@ -55,7 +55,7 @@ function indiSlide($slide = null, $master = null){
 	    							<li data-id="<?php echo $index; ?>" style="display: inline-block; vertical-align: top;"><h2 class="<?php if($index==$default_slide) { echo 'slide_title engaged'; } else { echo 'slide_title';} ?>">Slide <?php echo $index+1; ?></h2>
 									<div id = "slide-<?php echo $index; ?>" class="<?php if($index==$default_slide) { echo 'ib show_slide'; } else { echo 'ib collapse';} ?>">
 										<div class="slide-preview" id="slide-preview-<?=$index ?>">
-												<div id="slide-preview-inner-<?=$index ?>" class="slide-preview-inner" style="color: #<?= $color ?>; background-image: url('<?php echo $slide_upload; ?>'); background-position: 0; background-size:cover; width: <?php echo $width; ?><?php echo $width_metric; ?>; height: <?php echo $master['Slider_Height'][0]; ?><?php echo $master['Slider_Height_Metric'][0]; ?>;padding: 0 5%;">
+												<div id="slide-preview-inner-<?=$index ?>" class="slide-preview-inner" style="color: #<?= $color ?>; background-image: url('<?php echo $slide_upload; ?>'); background-color: #<?php echo $bgcolor; ?>; background-position: 0; background-size:cover; width: <?php echo $width; ?><?php echo $width_metric; ?>; height: <?php echo $master['Slider_Height'][0]; ?><?php echo $master['Slider_Height_Metric'][0]; ?>;padding: 0 5%;">
 													<span class="slide-nav-left" data-direction="left"></span>
 	                    							<span class="slide-nav-right" data-direction="right"></span>
 													<div style="position: relative; top: 50%; transform: translateY(-50%);">
@@ -117,8 +117,11 @@ function indiSlide($slide = null, $master = null){
 										<h4>Content Color</h4><input type="text" data-id="<?= $index ?>" class="jscolor jscolor-active slide_input" name="color[]" value=<?php echo $color;?> /></br>
 										</div>
 										<div class="bshift-form-element">
+										<h4>Background Color</h4><input type="text" data-id="<?= $bgcolor ?>" class="jscolor jscolor-active slide_input" name="bgcolor[]" value=<?php echo $bgcolor;?> /></br>
+										</div>
+										<div class="bshift-form-element">
 										<h4>Width</h4>
-											<input type="text" id="slide_width" class="slide_input" name="width[]" value="<?php echo $width; ?>" />
+											<input type="text" id="slide_width" class="slide_input" style="width: 50%" name="width[]" value="<?php echo $width; ?>" />
 											
 											<select name="width_metric[]" class="<?php echo $width_metric; ?> metric" value="<?php echo $width_metric; ?>" >
 												<option value="px" <?php if($width_metric == 'px'){echo("selected");}?>>Pixels</option>

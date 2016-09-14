@@ -47,6 +47,7 @@
 					$temp_array['text_position'][$index] = ($_POST['text_position'][$i])? $_POST['text_position'][$i] : '';
 					$temp_array['position_bottom'][$index] = ($_POST['position_bottom'][$i])? $_POST['position_bottom'][$i] : 0;
 					$temp_array['color'][$index] = $_POST['color'][$i];
+					$temp_array['bgcolor'][$index] = $_POST['bgcolor'][$i];
 					//$temp_array['effect'][$index] = $_POST['effect'][$i];
 					//$temp_array['height'][$index] = $_POST['height'][$i];
 					$temp_array['width'][$index] = $_POST['width'][$i];
@@ -61,7 +62,7 @@
 					$temp_array['image_position'][$i] = ($_POST['image_position'][$i])? $_POST['image_position'][$i] : '';
 					$temp_array['text_position'][$i] = ($_POST['text_position'][$i])? $_POST['text_position'][$i] : '';
 					$temp_array['position_bottom'][$i] = ($_POST['position_bottom'][$i])? $_POST['position_bottom'][$i] : 0;
-					
+					$temp_array['bgcolor'][$i] = $_POST['bgcolor'][$i];
 					$temp_array['color'][$i] = $_POST['color'][$i];
 					//$temp_array['effect'][$i] = $_POST['effect'][$i];
 					//$temp_array['height'][$i] = $_POST['height'][$i];
@@ -158,7 +159,9 @@
 		<?php endif; ?>
 		<form action="admin.php?page=edit_slider&slider_id=<?php echo $post_id; ?>" method="post" id="slides" class="<?php echo $post_id; ?>">
 			<input type="hidden" name="pid" value="<?php echo $post_id; ?>" />
-			<input type="hidden" name="visible" value="1" />
+			<?php if(get_post_meta($post_id,'Slides_Array',true)) : ?>
+				<input type="hidden" name="visible" value="1" />
+			<?php endif; ?>
 			<ul>
 
 			<?php 	$overAllData = get_post_meta($post_id);

@@ -128,11 +128,6 @@ jQuery(document).ready(function($){
         $('.inner-image-'+i).css('height',img_height);
     });
 
-    /*$('.btm').keyup(function() {
-        bottom = $(this).val();
-        $('.option-b').css('bottom', bottom+'px' );
-    });*/
-
    
 
    $('.show_slide .ip').on('change',function() {
@@ -155,16 +150,6 @@ jQuery(document).ready(function($){
         $('.slide-preview div').css('width', new_width);
    });
 
- 
-
-    /*$(document).on('click', function() {
-
-
-          var color_input = $('.jscolor-active').val();
-          $('.slide-preview div').css('color','#'+color_input);      
-
-    });*/
-
     function dynamicText(a,b) {
     	
         $('#slide-preview-'+b+' div div div.option-a').html(a);
@@ -186,15 +171,7 @@ jQuery(document).ready(function($){
             console.log(response);
             var reta = JSON.parse(response);
             slides_length = reta.lid;
-        });
-
-    /*$('.slide_input').mousedown(function() {
-        $('.btn_save').show();
     });
-
-    $('textarea').mousedown(function() {
-        $('.btn_save').show();
-    });*/
 
     $(document).on('click','.slide_title',function( event ) {
 
@@ -208,7 +185,6 @@ jQuery(document).ready(function($){
         var active_slide = $(parent).find('.ib');
         //console.log(active_slide);
         var obj = $('.ib.show_slide');
-        //console.log(obj);
         $(obj).removeClass('show_slide').addClass('collapse');
         $(active_slide).removeClass('collapse').addClass('show_slide');
         $(this).addClass('engaged');
@@ -238,7 +214,7 @@ jQuery(document).ready(function($){
         $('.b-current .bshift-editor').show();
     });
 
-    $(document).on('click','.add_new_slide',function(e) {
+    $(document).on('click','.add_new_slide',function(event) {
         //$(this).hide();
         console.log(this);
         var _this = this;
@@ -297,11 +273,39 @@ jQuery(document).ready(function($){
         
        
     });
+    
+    $(document).on( 'click', '.delete-post', function(e) {
+        event.preventDefault();
+        console.log(e);
+        var id = $(this).data('id');
+        console.log($(this).parents('#post-'+id));
+        var slide = $(this).parents('#post-'+id);
+        console.log(slide);
+
+        $.ajax({
+            type: 'post',
+            url: ajaxurl,
+            data: {
+                action: 'bshift_delete_post',
+                id: id
+            },
+            success: function( result ) {
+                //console.log(slide);
+                var response = $.trim(result);
+                if( response == 'success' ) {
+                    console.log(slide);
+                    slide.fadeOut( function(){
+                        slide.remove();
+                    });
+                }
+            }
+        });
+        return false;
+    });
 
     
     
 });
-
 
 
 
