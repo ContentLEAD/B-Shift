@@ -157,11 +157,12 @@
 		<?php if(sizeof(get_post_meta($post_id,'Slides_Array',true))=="1") : ?>
 			<!--<h3 class="add_slide_btn add_new_slide" id="new_slide" data-pid="<?php echo $post_id; ?>">Add Slide</h3>-->
 		<?php endif; ?>
-		<form action="admin.php?page=edit_slider&slider_id=<?php echo $post_id; ?>" method="post" id="slides" class="<?php echo $post_id; ?>">
+		<form action="admin.php?page=edit_slider&slider_id=<?php echo $post_id; ?>" method="post" id="slides" class="<?php echo $post_id; ?>" data-slide-count="<?php echo get_post_meta($post_id,'Slides_Array_Count',true); ?>">
 			<input type="hidden" name="pid" value="<?php echo $post_id; ?>" />
 			<?php if(get_post_meta($post_id,'Slides_Array',true)) : ?>
-				<input type="hidden" name="visible" value="1" />
+				<input type="hidden" name="visible" value="<?php echo get_post_meta($post_id,'Slides_Array_Count',true); ?> " />
 			<?php endif; ?>
+			
 			<ul>
 
 			<?php 	$overAllData = get_post_meta($post_id);

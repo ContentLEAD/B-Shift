@@ -114,10 +114,10 @@ function indiSlide($slide = null, $master = null){
 										<input class="upload_image_button" value="Add Image" data-id="<?php echo $i; ?>" data-target="slide-button-preview" type="button"></input>
 										</div>
 										<div class="bshift-form-element">
-										<h4>Content Color</h4><input type="text" data-id="<?= $index ?>" class="jscolor jscolor-active slide_input" name="color[]" value=<?php echo $color;?> /></br>
+										<h4>Content Color</h4><input type="text" data-color-type="foreground" data-id="<?= $index ?>" class="jscolor jscolor-active slide_input" name="color[]" value=<?php echo $color;?> /></br>
 										</div>
 										<div class="bshift-form-element">
-										<h4>Background Color</h4><input type="text" data-id="<?= $bgcolor ?>" class="jscolor jscolor-active slide_input" name="bgcolor[]" value=<?php echo $bgcolor;?> /></br>
+										<h4>Background Color</h4><input type="text" data-color-type="background" data-id="<?= $index ?>" class="jscolor jscolor-active slide_input" name="bgcolor[]" value=<?php echo $bgcolor;?> /></br>
 										</div>
 										<div class="bshift-form-element">
 										<h4>Width</h4>

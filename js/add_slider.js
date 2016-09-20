@@ -48,9 +48,17 @@ window.changeContentColor = function(e) {
 
         var color_input = $(this).val();
         var index = $(this).attr('data-id');
-        console.log(index);
-        $('#slide-preview-inner-'+index).css('color','#'+color_input);
-        console.log($('#slide-preview-inner-'+index).css('color'));
+        console.dir(color_input);
+        var type = $(this).attr('data-color-type');
+        switch(type) {
+            case "foreground" :
+                $('#slide-preview-inner-'+index).css('color','#'+color_input);
+                break;
+            case "background" :
+                $('#slide-preview-inner-'+index).css('background-color','#'+color_input);
+                break;
+        }
+        //console.log($('#slide-preview-inner-'+index).css('color'));
 }
 
 window.initializeFormGrouping = function() {
@@ -193,6 +201,7 @@ jQuery(document).ready(function($){
 
     $(document).on('click','.delete_slide',function( event ) {
         event.preventDefault();
+        $('input[name="visible"]').val(0);
         var garbage = $(this).parent();
         $(garbage).remove();
         $('.btn_save').show();
@@ -219,6 +228,9 @@ jQuery(document).ready(function($){
         console.log(this);
         var _this = this;
         //$('#slides ul li').hide();
+        var form = $(this).parents();
+        var new_index = $(form[2]).attr('data-slide-count');
+        $('input[name="visible"]').val(new_index);
         $('.btn_save').parent().show();
         //$('.ib collapse').removeClass('collapse');
         //$('.show_slide').addClass('collapse');

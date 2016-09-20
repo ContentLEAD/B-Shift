@@ -8,6 +8,19 @@
 	width: 50%;
 	margin-top: 10px;
 	text-align: center;
+	margin-bottom: 12px;
+	background: #67C81D;
+    color: #FFF;
+}
+.entry-form div{
+	float: left;
+	padding: 10px;
+	width: 30%; 
+}
+.entry-form .create {
+	width: 60%;
+	background: #67C81D;
+    color: #FFF;
 }
 .ib, .b-current { 
 	display: inline-block; 
