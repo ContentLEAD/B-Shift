@@ -1,3 +1,8 @@
+.slide-content::after {
+	clear: both;
+	display: block;
+	content: "";
+}
 .create-slider-button {
 	border: 1px solid;
 	padding: 4px;

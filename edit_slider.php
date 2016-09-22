@@ -7,7 +7,7 @@
 	
 	if(isset($_POST['update'])) {
 		
-		var_dump($_POST);
+		//var_dump($_POST);
 	  	if($_POST) { 
 	  			$post_id = $_POST['slider_id']; 
 	  	}

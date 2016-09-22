@@ -58,7 +58,7 @@ function indiSlide($slide = null, $master = null){
 												<div id="slide-preview-inner-<?=$index ?>" class="slide-preview-inner" style="color: #<?= $color ?>; background-image: url('<?php echo $slide_upload; ?>'); background-color: #<?php echo $bgcolor; ?>; background-position: 0; background-size:cover; width: <?php echo $width; ?><?php echo $width_metric; ?>; height: <?php echo $master['Slider_Height'][0]; ?><?php echo $master['Slider_Height_Metric'][0]; ?>;padding: 0 5%;">
 													<span class="slide-nav-left" data-direction="left"></span>
 	                    							<span class="slide-nav-right" data-direction="right"></span>
-													<div style="position: relative; top: 50%; transform: translateY(-50%);">
+													<div class="slide-content" style="position: relative; top: 50%; transform: translateY(-50%);">
 														<div class="option-a" id="option-a-<?= $index ?>" style="float: <?php echo $text_position; ?>">
 														<?php 
 															echo html_entity_decode($slide_content); 

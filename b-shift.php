@@ -293,7 +293,7 @@ function bshift_shortcode($atts) {
             <?php for($i=0;$i<$slide_count;$i++) {  if($slider_state == 'published'){ ?>
             <li id="<?php echo $post_id; ?>" class="<?php echo $post_id .' '.$eff ?>" 
                 data-speed="<?php echo $slides['delay'][$i]; ?>" data-effect="<?php echo $eff; ?>" style="background-image: url('<?php echo $slides['slide_upload'][$i]; ?>'); 
-                background-size:cover; width: <?php echo $slides['width'][$i]; echo $slides['width_metric'][$i]; ?>; height: 100%; background-position: 0, <?php echo $total_width; ?>;  ">
+                background-color: #<?php echo $slides['bgcolor'][$i]; ?>; background-size:cover; width: <?php echo $slides['width'][$i]; echo $slides['width_metric'][$i]; ?>; height: 100%; background-position: 0, <?php echo $total_width; ?>;  ">
                     <!-- this div needs to be placed perfect center not center text.  contrain it so it is not 100% of the parent container add slight padding and center div horiz and vertic.  DO NOT center content -->     
                 <div class="b-shift-content" style="color: #<?php echo $slides['color'][$i]; ?>">
                     <!-- need to start setting some basic constraitns on the elements to ensure they always render as good as possible under minimal settings. -->
