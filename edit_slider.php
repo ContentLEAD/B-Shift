@@ -160,7 +160,7 @@
 		<form action="admin.php?page=edit_slider&slider_id=<?php echo $post_id; ?>" method="post" id="slides" class="<?php echo $post_id; ?>" data-slide-count="<?php echo get_post_meta($post_id,'Slides_Array_Count',true); ?>">
 			<input type="hidden" name="pid" value="<?php echo $post_id; ?>" />
 			<?php if(get_post_meta($post_id,'Slides_Array',true)) : ?>
-				<input type="hidden" name="visible" value="<?php echo get_post_meta($post_id,'Slides_Array_Count',true); ?> " />
+				<input type="hidden" name="visible" value="0" />
 			<?php endif; ?>
 			
 			<ul>
