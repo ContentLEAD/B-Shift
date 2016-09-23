@@ -204,12 +204,13 @@ jQuery(document).ready(function($){
         $('input[name="visible"]').val(0);
         var garbage = $(this).parent();
         $(garbage).remove();
-        //add AJAX call to database to update slide array minus the current slide
+        //add AJAX call to database to update slide array
+        $('#slides').trigger('submit');
         $('.btn_save').show();
         console.log($(this).attr('data-ref'));
-        if($(this).attr('data-ref')==0) {
+        /*if($(this).attr('data-ref')==0) {
             location.reload();
-        }
+        }*/
         
     });
 
